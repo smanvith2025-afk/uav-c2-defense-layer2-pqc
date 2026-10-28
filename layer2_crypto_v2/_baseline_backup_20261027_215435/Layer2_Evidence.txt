@@ -1,0 +1,59 @@
+liboqs-python faulthandler is disabled
+ML-KEM Test
+------------
+Public Key Size: 1184
+Ciphertext Size: 1088
+Shared Secret Size: 32
+ML-KEM test successful!
+liboqs-python faulthandler is disabled
+ML-KEM + AES-GCM Integration Test
+----------------------------------
+ML-KEM shared secret established successfully!
+Original Command: b'TAKEOFF ALTITUDE 10'
+Encrypted Command: b'\xa8\xf9\x82\xad\xc9\xf5\x00h\xf0\x8b\x9a&\xe0\x17w\xf91b\xc8\x94\x83HK\x99\x86/\x08X\x8c\xb5\xe7C\xfe\xf2\xdd'
+Decrypted Command: b'TAKEOFF ALTITUDE 10'
+ML-KEM + AES-GCM test successful!
+liboqs-python faulthandler is disabled
+ML-DSA Digital Signature Test
+--------------------------------
+Message: b'TAKEOFF ALTITUDE 10'
+Public Key Size: 1952
+Signature Size: 3309
+Signature verification successful!
+Tampered message rejected successfully!
+AES-GCM Encryption Test
+-----------------------
+Original Message: b'TAKEOFF ALTITUDE 10'
+Encrypted Message: b'\xc3\xd5\xcf\xa1\x0f\xdb \xe6\x0b^\xe0\x9cx\x18[A\xf8|\x0c\xfd\xab\xd8\xfa\xa8t\xb0|\xbf\xb36!\xd7\x1f\x98L'
+Decrypted Message: b'TAKEOFF ALTITUDE 10'
+Encryption test successful!
+AES-GCM Tamper Detection Test
+-----------------------------
+Tampered command rejected successfully!
+AES-GCM integrity protection is working!
+liboqs-python faulthandler is disabled
+Cryptographic Performance Benchmark
+------------------------------------
+
+ML-KEM-768 Results
+------------------
+Key Generation Average: 0.161 ms
+Encapsulation Average: 0.186 ms
+Decapsulation Average: 0.221 ms
+
+AES-GCM Results
+----------------
+Encryption Average: 0.001 ms
+Decryption Average: 0.001 ms
+
+Benchmark completed successfully!
+liboqs-python faulthandler is disabled
+ML-DSA Performance Benchmark
+-----------------------------
+Algorithm: ML-DSA-65
+Iterations: 100
+Public Key Size: 1952 bytes
+Signature Size: 3309 bytes
+Average Signing Time: 1.8137 ms
+Average Verification Time: 0.4916 ms
+ML-DSA benchmark completed successfully!

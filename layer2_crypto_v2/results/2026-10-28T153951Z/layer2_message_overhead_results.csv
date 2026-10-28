@@ -1,0 +1,9 @@
+message_type,plaintext_command_bytes,header_bytes,nonce_bytes,gcm_tag_bytes,crypto_payload_bytes,total_wire_bytes,description
+HANDSHAKE_INIT,0,22,0,0,13265,13287,"v2 header + JSON(v2 suite, sender_id, recipient_id, role, timestamp, 16B nonce, ML-DSA-65 pk [1952B hex], ML-KEM-768 pk [1184B hex], ML-DSA-65 sig [3309B hex])"
+HANDSHAKE_RESPONSE,0,22,0,0,15429,15451,"v2 header + JSON(v2 suite, sender_id, recipient_id, role, timestamp, 16B nonce, ML-DSA-65 pk [1952B hex], echoed ML-KEM-768 pk [1184B hex], ML-KEM-768 ct [1088B hex], ML-DSA-65 sig [3309B hex])"
+HANDSHAKE_CONFIRM,0,22,12,16,3309,3359,v2 header (AAD) + 12B nonce + AES-256-GCM(length-framed transcript ML-DSA-65 sig [3309B]) + 16B tag
+FULL_HANDSHAKE_3_MSG_TOTAL,0,66,12,16,32003,32097,Aggregate wire bytes across HANDSHAKE_INIT + HANDSHAKE_RESPONSE + HANDSHAKE_CONFIRM
+COMMAND (TAKEOFF ALTITUDE 10),19,22,12,16,6748,6798,v2 header (AAD) + 12B nonce + AES-256-GCM(JSON whitelisted command + metadata + ML-DSA-65 sig [3309B hex]) + 16B tag
+REKEY_INIT,0,22,12,16,9189,9239,"v2 header (AAD) + 12B nonce + AES-256-GCM(JSON RekeyPayload: epochs, 16B nonce, ML-KEM-768 pk [1184B hex], ML-DSA-65 sig [3309B hex]) + 16B tag"
+REKEY_RESPONSE,0,22,12,16,11429,11479,"v2 header (AAD) + 12B nonce + AES-256-GCM(JSON RekeyPayload: epochs, echoed ML-KEM-768 pk, ML-KEM-768 ct [1088B hex], 32B HMAC confirm tag, ML-DSA-65 sig [3309B hex]) + 16B tag"
+TERMINATE,9,22,12,16,6738,6788,"v2 header (AAD) + 12B nonce + AES-256-GCM(JSON TerminatePayload: sender_id, epoch, timestamp, reason, ML-DSA-65 sig [3309B hex]) + 16B tag"
