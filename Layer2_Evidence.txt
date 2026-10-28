@@ -1,0 +1,129 @@
+liboqs-python faulthandler is disabled
+ML-KEM Test
+------------
+Public Key Size: 1184
+Ciphertext Size: 1088
+Shared Secret Size: 32
+ML-KEM test successful!
+liboqs-python faulthandler is disabled
+ML-KEM + AES-GCM Integration Test
+----------------------------------
+ML-KEM shared secret established successfully!
+Original Command: b'TAKEOFF ALTITUDE 10'
+Encrypted Command: b'\xa8\xf9\x82\xad\xc9\xf5\x00h\xf0\x8b\x9a&\xe0\x17w\xf91b\xc8\x94\x83HK\x99\x86/\x08X\x8c\xb5\xe7C\xfe\xf2\xdd'
+Decrypted Command: b'TAKEOFF ALTITUDE 10'
+ML-KEM + AES-GCM test successful!
+liboqs-python faulthandler is disabled
+ML-DSA Digital Signature Test
+--------------------------------
+Message: b'TAKEOFF ALTITUDE 10'
+Public Key Size: 1952
+Signature Size: 3309
+Signature verification successful!
+Tampered message rejected successfully!
+AES-GCM Encryption Test
+-----------------------
+Original Message: b'TAKEOFF ALTITUDE 10'
+Encrypted Message: b'\xc3\xd5\xcf\xa1\x0f\xdb \xe6\x0b^\xe0\x9cx\x18[A\xf8|\x0c\xfd\xab\xd8\xfa\xa8t\xb0|\xbf\xb36!\xd7\x1f\x98L'
+Decrypted Message: b'TAKEOFF ALTITUDE 10'
+Encryption test successful!
+AES-GCM Tamper Detection Test
+-----------------------------
+Tampered command rejected successfully!
+AES-GCM integrity protection is working!
+liboqs-python faulthandler is disabled
+Cryptographic Performance Benchmark
+------------------------------------
+
+ML-KEM-768 Results
+------------------
+Key Generation Average: 0.161 ms
+Encapsulation Average: 0.186 ms
+Decapsulation Average: 0.221 ms
+
+AES-GCM Results
+----------------
+Encryption Average: 0.001 ms
+Decryption Average: 0.001 ms
+
+Benchmark completed successfully!
+liboqs-python faulthandler is disabled
+ML-DSA Performance Benchmark
+-----------------------------
+Algorithm: ML-DSA-65
+Iterations: 100
+Public Key Size: 1952 bytes
+Signature Size: 3309 bytes
+Average Signing Time: 1.8137 ms
+Average Verification Time: 0.4916 ms
+ML-DSA benchmark completed successfully!
+
+
+======================================================================
+UPDATED LAYER 2 PROTOCOL & BENCHMARK EVIDENCE (2026-10-27)
+======================================================================
+Environment:
+  OS:           Windows-11-10.0.26200-SP0 (AMD64)
+  Processor:    Intel64 Family 6 Model 183 Stepping 1, GenuineIntel (16 logical CPUs)
+  Python:       3.14.5
+  liboqs-python:0.16.0.1 (ML-KEM-768, ML-DSA-65 enabled)
+  cryptography: 50.0.1
+  matplotlib:   3.11.2
+  pytest:       9.1.1
+
+1. Automated Protocol Security Test Suite (test_protocol.py):
+  Command:      python -m pytest test_protocol.py -v
+  Total Tests:  120 collected across 25 security categories + edge cases
+  Result:       120 passed, 0 failed, 0 skipped (1.04s)
+  Categories Verified:
+    [PASS] 01. Successful 3-message authenticated handshake (ML-KEM-768 + ML-DSA-65)
+    [PASS] 02. Context-bound directional session-key agreement (HKDF-SHA-256)
+    [PASS] 03. Valid signed and AES-256-GCM encrypted UAV commands
+    [PASS] 04. Invalid / forged / zeroed ML-DSA-65 command signatures rejected
+    [PASS] 05. Modified / bit-flipped / truncated AES-256-GCM ciphertexts rejected
+    [PASS] 06. Modified 22-byte binary header AAD fields rejected
+    [PASS] 07. Modified encrypted command payload rejected
+    [PASS] 08. Wrong session encryption key rejected
+    [PASS] 09. Unknown or revoked peer identity rejected (handshake & mid-session)
+    [PASS] 10. Public-key substitution attack rejected by TrustStore
+    [PASS] 11. Immediate and delayed replayed command packets rejected
+    [PASS] 12. Duplicate sequence numbers rejected
+    [PASS] 13. Out-of-order messages & excessive sequence gaps handled per policy
+    [PASS] 14. Expired sessions rejected and cleared
+    [PASS] 15. Unsupported protocol versions rejected
+    [PASS] 16. Malformed, empty, and truncated packets rejected
+    [PASS] 17. Invalid message types and oversized packets (>65,536 B) rejected
+    [PASS] 18. Handshake transcript modification rejected
+    [PASS] 19. Session restart & cross-session old packet replay rejected
+    [PASS] 20. In-session ephemeral ML-KEM-768 rekey and session termination verified
+    [PASS] 21. Deterministic 96-bit nonce uniqueness, reuse detection, & counter exhaustion
+    [PASS] 22. Concurrent multi-session isolation & cross-session packet rejection
+    [PASS] 23. Handshake failure cleanup verified (fail-closed)
+    [PASS] 24. Cryptographic primitive failure handling verified
+    [PASS] 25. Parameterized parser fuzzing (47 random/boundary inputs) passed
+
+2. End-to-End Protocol & Primitive Benchmarks (layer2_protocol_benchmark_results.csv):
+  Iterations: 100 measured runs, 10 warm-ups (time.perf_counter_ns)
+  - ML-KEM-768 Key Generation:     mean = 0.1723 ms | median = 0.1644 ms | P95 = 0.2087 ms
+  - ML-KEM-768 Encapsulation:      mean = 0.1971 ms | median = 0.1911 ms | P95 = 0.2610 ms
+  - ML-KEM-768 Decapsulation:      mean = 0.2374 ms | median = 0.2261 ms | P95 = 0.3065 ms
+  - ML-DSA-65 Key Generation:      mean = 0.4669 ms | median = 0.4508 ms | P95 = 0.5178 ms
+  - ML-DSA-65 Signing:             mean = 1.9556 ms | median = 1.6296 ms | P95 = 4.6008 ms
+  - ML-DSA-65 Verification:        mean = 0.5141 ms | median = 0.4892 ms | P95 = 0.6288 ms
+  - HKDF-SHA-256 Key Derivation:   mean = 0.0183 ms | median = 0.0146 ms | P95 = 0.0191 ms
+  - AES-256-GCM Encrypt (6,742 B): mean = 0.0031 ms | median = 0.0031 ms | P95 = 0.0032 ms
+  - AES-256-GCM Decrypt (6,742 B): mean = 0.0030 ms | median = 0.0030 ms | P95 = 0.0031 ms
+  - Full 3-Msg Handshake E2E:      mean = 9.5152 ms | median = 8.9811 ms | P95 = 14.6201 ms
+  - Command Send (Sign + Encrypt): mean = 1.9084 ms | median = 1.4211 ms | P95 = 4.7798 ms
+  - Command Recv (Decrypt+Verify): mean = 0.5691 ms | median = 0.5388 ms | P95 = 0.7977 ms
+  - Command Full E2E Round-Trip:   mean = 2.4774 ms | median = 1.9909 ms | P95 = 5.3621 ms
+  - In-Session Rekey E2E:          mean = 0.6923 ms | median = 0.6571 ms | P95 = 0.9196 ms
+
+3. Wire Overhead Summary (layer2_message_overhead_results.csv):
+  - HANDSHAKE_INIT:                13,041 bytes (22 B header + 13,019 B signed payload)
+  - HANDSHAKE_RESPONSE:            12,839 bytes (22 B header + 12,817 B signed payload)
+  - HANDSHAKE_CONFIRM:              3,359 bytes (22 B header + 12 B nonce + 3,309 B ct + 16 B tag)
+  - COMMAND (TAKEOFF ALTITUDE 10):  6,798 bytes (22 B header + 12 B nonce + 6,748 B ct + 16 B tag)
+  - REKEY_INIT:                     1,234 bytes (22 B header + 12 B nonce + 1,184 B ct + 16 B tag)
+  - REKEY_RESPONSE:                 1,138 bytes (22 B header + 12 B nonce + 1,088 B ct + 16 B tag)
+  - TERMINATE:                         59 bytes (22 B header + 12 B nonce +     9 B ct + 16 B tag)

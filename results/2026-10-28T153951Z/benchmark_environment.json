@@ -1,0 +1,32 @@
+{
+  "protocol_version": 2,
+  "package_version": "2.0.0",
+  "timestamp_utc": "2026-10-28T15:39:51.478804+00:00",
+  "timestamp_dir": "2026-10-28T153951Z",
+  "command": "C:\\Python314\\python.exe layer2_protocol_benchmark.py",
+  "python_version": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "logical_cpus": 16,
+  "liboqs_version": "0.16.0",
+  "cryptography_version": "50.0.1",
+  "timer": "time.perf_counter_ns()",
+  "warmups": 10,
+  "measured_iterations": 100,
+  "bootstrap_resamples": 2000,
+  "bootstrap_seed": 42,
+  "source_sha256": {
+    "protocol/__init__.py": "7FEB1DA96D146CB6C3EAB0B8BCC56F4E746B4B84EE24BE58A9DDEFDF1121B7ED",
+    "protocol/constants.py": "5427822073A6AE776CCAF3EA06FAF2EAE44D406A24F4D437979AFBEF3359CDD3",
+    "protocol/crypto_core.py": "E1A35CE0FBE42EF8D52FDC8AAB3DCB227BCD04DBF683CEFD5BF874A238B50712",
+    "protocol/errors.py": "210800DEDD68ECBFCC8F5174A16664054E98A2A37DAEF3BB8B73DA2E45D81404",
+    "protocol/identity.py": "1C91CF78716303BCD0E6619BFEC34C13FAA5CD1A935C2D0A1748313EF59AEA65",
+    "protocol/messages.py": "147CB15910FC01AEF0F10750EF30B03C1F651F6A92A87DCE300F621593C7EFB8",
+    "protocol/receiver.py": "823A57B579F2AA9A4027C0DF50AF45C389D2F77F68CF9C156AEF4DA772D45BFA",
+    "protocol/sender.py": "5F3972B9DBA7C47589644C42F3B7E6F81FB7E471564494FED607A69EFE48D7DB",
+    "protocol/session.py": "214C8C3ECA61293BE16D00206D4E4521BC0BD3437A6B52A80CA1BEE531F4068D",
+    "protocol/transport.py": "9B6C635CB636DED24334047C6571E500EAE26B88C628FF670EBE244673EAA33C",
+    "test_protocol.py": "3022DEFEB5AF94FA51C1BD331995D8F601A087895ABE226655E67984273DDD4A",
+    "layer2_protocol_benchmark.py": "FAE4651EE6A284B3BF59A17A724D2710719461451225A680C5DA093A85C27F36"
+  }
+}
